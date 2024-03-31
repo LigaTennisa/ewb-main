@@ -1,0 +1,62 @@
+body{
+	background-color: white;
+}
+
+.find {
+    /* position: absolute; */
+    color: black;
+    margin-top: 10px;
+}
+
+.card-container {
+    display: inline-flex;
+    top: 80%;
+    margin-bottom: 20px;
+}
+
+.card {
+    border-radius: 33px;
+    font-family: Montserrat;
+    position: relative;
+    white-space: nowrap;
+    color: black;
+    font-size: 18px;
+    width: 270px;
+    height: 420px;
+    min-height: 270px;
+    min-width: 420px;
+    max-width: 270px;
+    max-height: 420px;
+    margin-right: 30px;
+    margin-left: 30px;
+    background: #ffffff;
+    box-shadow: 0px 6px 50px rgba(168,228,160);
+    padding-left: 30px;
+    padding-right: 30px;
+    padding-top: 38px;
+    padding-bottom: 38px;
+    animation-name: fadeForm;
+    animation-duration: .7s;
+    animation-timing-function: ease-in-out;
+    animation-delay: 0s;
+    animation-iteration-count: 1;
+    animation-fill-mode: forwards;
+}
+
+@keyframes fadeForm{
+    0% {
+        opacity: 0;
+    }
+    25% {
+        opacity: .25;
+    }
+    50% {
+        opacity: .5;
+    }
+    75% {
+        opacity: .75;
+    }
+    100% {
+        opacity: 1;
+    }
+}   

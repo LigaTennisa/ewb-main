@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% block content %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+
+<head>
+  <meta charset="UTF-8">
+  <title>Найти партнера</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="{% static 'css/find_partner.css'%}" type="text/css">
+</head>
+
+<body>
+  <div><h1 class = "find">Найти партнера</h1></div>
+  <div class="card-container" style = " left:-3000px;">
+  <div >
+  {% for post in posts %}
+  <div class="card">
+    <h2>{{ post.title }}</h2>
+    <p>{{ post.author.first_name }} {{ post.author.last_name }}</a></p>
+    <p>Корт: {{ post.court }}</p>
+    <p>Дата: {{ post.training_date }}</p>
+    <p>Время: {{ post.training_time }}</p>
+    <p>Пожелания: {{ post.preferences }}</p>
+    <small>Published on {{ post.published_at | date:"M d, Y" }} 
+    {% if request.user.is_authenticated and request.user == post.author %}
+    <p>
+      <a href="{% url 'post-edit' post.id %}">Edit</a>
+      <a href="{% url 'post-delete' post.id %}">Delete</a>
+    </p>
+  </div>
+  {% endif %}
+
+  {% if request.user.is_authenticated and request.user != post.author %}
+  <form method="post" action="{% url 'respond_to_post' post.id %}">
+    {% csrf_token %}
+    <button type="submit">Откликнуться</button>
+  </form>
+  {% endif %}
+</div>
+
+  {% endfor %}
+
+<a href="{% url 'add_post' %}">Создать форму</a> <!-- Кнопка "плюсик" для добавления публикации -->
+</body>
+{% endblock content %}
