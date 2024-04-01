@@ -15,8 +15,9 @@
 </head>
 
 <body>
+  <form>
   <div><h1 class = "find">Найти партнера</h1></div>
-  <div class="card-container" style = " left:-3000px;">
+  <div class="card-container" style = "top: 300px;">
   <div >
   {% for post in posts %}
   <div class="card">
@@ -40,11 +41,12 @@
     {% csrf_token %}
     <button type="submit">Откликнуться</button>
   </form>
+</form>
   {% endif %}
 </div>
 
   {% endfor %}
 
-<a href="{% url 'add_post' %}">Создать форму</a> <!-- Кнопка "плюсик" для добавления публикации -->
+<a class = "create" href="{% url 'add_post' %}">Создать форму</a> <!-- Кнопка "плюсик" для добавления публикации -->
 </body>
 {% endblock content %}
